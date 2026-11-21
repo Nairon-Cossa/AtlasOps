@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="#0B1B31" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center" android:padding="28dp">
+ <TextView android:id="@+id/callState" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Call" android:textColor="#9DE6D7" android:gravity="center" android:textSize="18sp"/>
+ <TextView android:id="@+id/callNumber" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:layout_marginBottom="45dp" android:gravity="center" android:textSize="28sp" android:textColor="#FFFFFF" android:text="Unknown number"/>
+ <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:orientation="horizontal">
+ <Button android:id="@+id/answerButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Answer"/>
+ <Button android:id="@+id/rejectButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Decline"/>
+ </LinearLayout>
+ <Button android:id="@+id/hangupButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="End call"/>
+ <Button android:id="@+id/muteButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Mute / unmute"/>
+ <Button android:id="@+id/speakerButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Speaker / earpiece"/>
+ <EditText android:id="@+id/dtmfDigit" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="phone" android:textColor="#FFFFFF" android:textColorHint="#A8BCCB" android:hint="Keypad digits"/>
+ <Button android:id="@+id/dtmfButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Send keypad tones"/>
+</LinearLayout>

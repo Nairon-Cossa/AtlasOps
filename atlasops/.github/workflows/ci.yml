@@ -1,0 +1,57 @@
+name: AtlasOps CI
+on:
+  push:
+  pull_request:
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18-alpine
+        ports: ['5432:5432']
+        env:
+          POSTGRES_USER: atlasops
+          POSTGRES_PASSWORD: test_admin_secret
+          POSTGRES_DB: atlasops
+        options: >-
+          --health-cmd "pg_isready -U atlasops -d atlasops" --health-interval 5s --health-timeout 5s --health-retries 15
+    env:
+      PGPASSWORD: test_admin_secret
+      POSTGRES_USER: atlasops
+      POSTGRES_DB: atlasops
+      POSTGRES_APP_PASSWORD: test_runtime_secret
+      DATABASE_URL: postgres://atlasops_runtime:test_runtime_secret@localhost:5432/atlasops
+      SIGNUP_INVITE_CODE: integration-suite-secret
+      PUBLIC_ORIGIN: http://localhost:8080
+      RUN_INTEGRATION_TESTS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      - name: Create DB schema and limited runtime role
+        run: |
+          psql -h localhost -U atlasops -d atlasops -v ON_ERROR_STOP=1 -f db/migrations/001_init.sql
+          psql -h localhost -U atlasops -d atlasops -v ON_ERROR_STOP=1 -f db/migrations/002_device_tokens.sql
+          # init script uses local psql; specify PGHOST for CI.
+          export PGHOST=localhost
+          sh db/migrations/003_runtime.sh
+          psql -h localhost -U atlasops -d atlasops -v ON_ERROR_STOP=1 -f db/migrations/004_transcripts.sql
+      - name: Test API
+        working-directory: api
+        run: |
+          npm install --no-audit --no-fund
+          npm test
+          find src -name '*.js' -exec node --check {} \;
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      - name: Build web dashboard
+        working-directory: web
+        run: |
+          npm install --no-audit --no-fund
+          npm run build

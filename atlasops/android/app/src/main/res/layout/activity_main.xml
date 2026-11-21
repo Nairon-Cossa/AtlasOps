@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:background="#F6F8FA">
+  <LinearLayout android:orientation="vertical" android:padding="24dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ATLASOPS  /  Corporate Dialer" android:textSize="23sp" android:textStyle="bold" android:textColor="#0B1B31" android:layout_marginBottom="16dp"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Company-SIM calls · No audio recording · Encrypted device token" android:textColor="#526477" android:layout_marginBottom="20dp"/>
+    <Button android:id="@+id/roleButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="1. Become default phone app"/>
+    <Button android:id="@+id/permissionsButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="2. Grant call permissions"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Secure server URL (HTTPS only)" android:layout_marginTop="18dp"/>
+    <EditText android:id="@+id/serverUrl" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textUri" android:hint="https://ops.example.com" android:singleLine="true"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="One-time enrollment code" android:layout_marginTop="8dp"/>
+    <EditText android:id="@+id/enrollmentCode" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Paste code from dashboard" android:inputType="textPassword" android:singleLine="true"/>
+    <Button android:id="@+id/enrollButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="3. Enroll device"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Select the COMPANY SIM / phone account. Personal SIMs must NOT be synced." android:layout_marginTop="16dp"/>
+    <Spinner android:id="@+id/accountSpinner" android:layout_width="match_parent" android:layout_height="48dp" />
+    <Button android:id="@+id/saveAccountButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="4. Lock to selected company SIM"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Company call dial pad" android:layout_marginTop="18dp" android:textStyle="bold"/>
+    <EditText android:id="@+id/phoneNumber" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="phone" android:hint="+258840000000" android:singleLine="true"/>
+    <Button android:id="@+id/dialButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Call using company SIM"/>
+    <Button android:id="@+id/syncButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="5. Sync call activity now"/>
+    <TextView android:id="@+id/statusText" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Not configured" android:textSize="13sp" android:textColor="#2B5964" android:layout_marginTop="22dp" android:layout_marginBottom="25dp"/>
+  </LinearLayout>
+</ScrollView>
